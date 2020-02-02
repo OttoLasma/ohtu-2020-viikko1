@@ -109,5 +109,12 @@ public class VarastoTest {
     	String vittuEiSitten = varasto5.toString();
     	assertEquals(5,varasto5.getSaldo(), vertailuTarkkuus);
     }
+    /*
+     * @Test
+     * public void tulostuksenTestaaminen(){
+     * varasto.lisaaVarastoon(5);
+     * String oikeaTulostus = "saldo = 5, vielä tilaa 5";
+     * assertEquals(oikeaTulostus, varasto.toString())
+     * }*/
     
 }
