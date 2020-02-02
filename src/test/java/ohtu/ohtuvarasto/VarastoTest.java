@@ -13,11 +13,19 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
+    Varasto varasto3;
+    Varasto varasto4;
+    Varasto varasto5;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        varasto2 = new Varasto(10,5);
+        varasto3 = new Varasto(-2,3);
+        varasto4 = new Varasto(-2);
+        varasto5 = new Varasto(10,-4);
     }
 
     @Test
@@ -64,5 +72,42 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
-
+    @Test
+    public void liikaaTavaraa() {
+    	varasto.lisaaVarastoon(12);
+    	assertEquals(0, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    	
+    }
+    @Test
+    public void liianVahanTavaraa() {
+    	varasto.lisaaVarastoon(5);
+    	varasto.otaVarastosta(6);
+    	assertEquals(10, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    @Test
+    public void toinenKonstruktori() {
+    	varasto2.lisaaVarastoon(1);
+    	assertEquals(6, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    @Test
+    public void toinenKonstruktoriToinenTesti() {
+    	varasto3.lisaaVarastoon(1);
+    	
+    	assertEquals(0, varasto3.getTilavuus(), vertailuTarkkuus);
+    }
+    @Test
+    public void KonstruktoriToinenTesti() {
+    	varasto4.lisaaVarastoon(1);
+    	
+    	assertEquals(0, varasto4.getTilavuus(), vertailuTarkkuus);
+    }
+    @Test
+    public void toinenKonstruktoriNegatiivinenAlkusaldo() {
+    	varasto5.lisaaVarastoon(5);
+    	varasto5.lisaaVarastoon(-2);
+    	varasto5.otaVarastosta(-2);
+    	String vittuEiSitten = varasto5.toString();
+    	assertEquals(5,varasto5.getSaldo(), vertailuTarkkuus);
+    }
+    
 }
