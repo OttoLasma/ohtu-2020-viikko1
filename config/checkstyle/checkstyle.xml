@@ -19,6 +19,10 @@
         <module name="CyclomaticComplexity">
         <property name="max" value="3"/>
         </module>
+        
+        <module name="Checker">
+        <property name="severity" value="warning"/>
+        </module>
 
     </module>
 
